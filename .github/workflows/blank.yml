@@ -1,0 +1,32 @@
+name: Print HTML to Email
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  print-to-email:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Read HTML File
+        id: read-html
+        run: |
+          html_content=$(cat Ts-cypress_report.html)
+          echo "::set-output name=email_body::$html_content"
+
+      - name: Send Email
+        uses: dawidd6/action-send-mail@v2
+        with:
+          server_address: smtp-mail.outlook.com
+          server_port: 587
+          username: rajat@talentsavvy.com
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "HTML File from GitHub Repository"
+          body: ${{ steps.read-html.outputs.email_body }}
+          to: rajat@talentsavvy.com
+          from: rajat@talentsavvy.com
