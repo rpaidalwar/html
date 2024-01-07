@@ -32,7 +32,7 @@ jobs:
             <html>
              <body>
              <h2>Cypress Test Report</h2>
-             $content <!-- Use HTML content directly -->
+             $html_content <!-- Use HTML content directly -->
              </body>
              </html>
           to: rajat@talentsavvy.com
