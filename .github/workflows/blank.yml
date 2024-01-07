@@ -28,6 +28,12 @@ jobs:
           password: ${{ secrets.SMTP_PASSWORD }}
           subject: "HTML File from GitHub Repository"
           body: ${{ steps.read-html.outputs.email_body }}
-          html_body: file://Ts-cypress_report.html
+          html_body: |
+            <html>
+             <body>
+             <h2>Cypress Test Report</h2>
+             $content <!-- Use HTML content directly -->
+             </body>
+             </html>
           to: rajat@talentsavvy.com
           from: rajat@talentsavvy.com
